@@ -1,26 +1,26 @@
 import { observable, action, runInAction } from "mobx";
 import axios from "axios";
+import { getCourses } from "../apicalls";
 
 export default class CoursesStore {
 
     @observable courses = [];
     @observable status = "";
+    @observable filter = {};
 
     @action
-    fetchCourses = async term => {
+    fetchCourses = async filter => {
 
         this.status = "searching";
-        this.term = term;
+        this.filter = filter;
         this.images = [];
   
         try {
-            var params = {
-                client_id:"4070052047e85343f77f7bbfb056ca4da387e25b3114baff0644247779a29964",
-                query: term
-            };
-            const response = await axios.get("https://api.unsplash.com/search/photos", { params: params});
-
-            this.setCourses(response.data.results);
+            //var params = { filter: filter };
+            const response = await axios.get('http://localhost:4000/courses/');
+            //console.log('>> fetchCourses -> response.data', response.data);
+            //const response = await getCourses();
+            this.setCourses(response.data);
         } 
         catch (error) {
             runInAction(() => {

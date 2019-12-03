@@ -6,11 +6,11 @@ import * as serviceWorker from './serviceWorker';
 
 import { Provider } from "mobx-react";
 
-import CoursesStore from "./stores/CoursesStore";
-const coursesStore = new CoursesStore();
+import RootStore from "./stores/RootStore";
+const rootStore = new RootStore();
 
 ReactDOM.render(
-  <Provider coursesStore={coursesStore}>
+  <Provider rootStore={rootStore} {...rootStore}>
     <App />
   </Provider>,
   document.getElementById("root")

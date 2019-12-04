@@ -34,13 +34,11 @@ class Cart extends React.Component {
     }
 
     removeFromCart = (cartItem) => {
-        console.log('>> Cart > removeFromCart > cartItem: ', cartItem);
         this.props.cartStore.removeFromCart(cartItem);
     }
 
     removeAllFromCart = (e) => {
         e.preventDefault();
-        console.log('>> Cart > removeAllFromCart ...');
         this.props.cartStore.clearCart();
     }
 }

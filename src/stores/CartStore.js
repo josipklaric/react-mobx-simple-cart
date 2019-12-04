@@ -1,5 +1,4 @@
-import { observable, action, runInAction, toJS } from "mobx";
-import axios from "axios";
+import { observable, action, toJS } from "mobx";
 
 export default class CartStore {
 
@@ -9,7 +8,6 @@ export default class CartStore {
         this.cartItems.intercept((change) => {
 
             if(change.removedCount > 0){
-                console.log('>> CartStore > intercept > removing items ... return original change');
                 return change;
             }
 
@@ -18,23 +16,20 @@ export default class CartStore {
             if(idSet.has(change.added[0].id))
             {
                 // prevent adding same item multiple times
-                console.log('>> CartStore > intercept > return NULL');
+                console.log('>> CartStore > intercept > Adding same item multiple times is not allowed');
                 return null;
             }
-            console.log('>> CartStore > intercept > return original change');
             return change
         });
     }
 
     @action
     addToCart = (course) => {
-        console.log('>> CartStore > addToCart > course: ', course);
         this.cartItems.push(course);
     }
 
     @action
     removeFromCart = (course) => {
-        //console.log('>> CartStore > removeFromCart > course: ', course);
         var tempList = this.cartItems.filter(function(item) {
             return item.id !== course.id;
         });
@@ -43,7 +38,6 @@ export default class CartStore {
     
     @action
     clearCart = () => {
-        console.log('>> CartStore > clearCart ..');
         this.cartItems.replace([]);
     }
 }

@@ -33,7 +33,6 @@ class CoursesListItem extends React.Component {
     addToCart = (e, course) => {
         e.preventDefault();
         var courseObject = toJS(course);
-        console.log('>> addToCart -> e: ', e.target, courseObject);
         this.props.addItemToCart(courseObject);
     };
 }

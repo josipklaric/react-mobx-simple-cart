@@ -26,7 +26,6 @@ class CoursesList extends React.Component {
     }
 
     addToCart = (course) => {
-        console.log('>> CoursesList > addToCart > course: ', course);
         this.props.cartStore.addToCart(course);
     }
 }

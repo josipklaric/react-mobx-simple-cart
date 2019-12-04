@@ -27,7 +27,6 @@ class CartItem extends React.Component {
     removeFromCart = (e, cartItem) => {
         e.preventDefault();
         var cartItemObject = toJS(cartItem);
-        console.log('>> removeFromCart -> e: ', e.target, cartItemObject);
         this.props.removeItemFromCart(cartItemObject);
     };
 }
